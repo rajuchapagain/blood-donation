@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import {store} from "./redux/store";
+import { Provider } from 'react-redux';
+import DCandidates from './components/donation-candidate.component';
+import {Container} from "@material-ui/core"
+import { ToastProvider } from "react-toast-notifications";
+import Header from "./pages/header.page";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <Provider store ={store}>     
+    <Container maxWidth="lg">
+      <Header/>
+      <ToastProvider 
+        autoDismiss
+        autoDismissTimeout={6000}
+        placement="top-center">
+      <DCandidates/>
+      </ToastProvider>
+    </Container>
+   </Provider>
   );
 }
 
